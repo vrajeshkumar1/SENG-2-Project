@@ -5,6 +5,7 @@ int City::numCities = 0;
 
 City::City()
 {
+    *(this->name) = "";
     *(this->population) = 0;
     *(this->avgDistEnemyBase) = 0;
     *(this->avgDistFriendlyBase) = 0;
@@ -15,8 +16,9 @@ City::City()
     numCities++;
 }
 
-City::City(int* population, double* avgDistEnemyBase, double* avgDistFriendlyBase, int* estEnemyInfantryPower, int* estFriendlyInfantryPower, int* politicalInterference)
+City::City(string* name, int* population, double* avgDistEnemyBase, double* avgDistFriendlyBase, int* estEnemyInfantryPower, int* estFriendlyInfantryPower, int* politicalInterference)
 {
+    *(this->name) = *name;
     *(this->population) = *population;
     *(this->avgDistEnemyBase) = *avgDistEnemyBase;
     *(this->avgDistFriendlyBase) = *avgDistFriendlyBase;
@@ -60,6 +62,11 @@ int City::getPoliticalInterference()
 double City::getRiskFactor()
 {
     return *riskFactor;
+}
+
+void City::setName(string* name)
+{
+    *(this->name) = *name;
 }
 
 void City::setPopulation(int* population)
