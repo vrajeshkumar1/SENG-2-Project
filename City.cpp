@@ -16,17 +16,22 @@ City::City()
     numCities++;
 }
 
-City::City(string* name, int* population, double* avgDistEnemyBase, double* avgDistFriendlyBase, int* estEnemyInfantryPower, int* estFriendlyInfantryPower, int* politicalInterference)
+City::City(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference)
 {
-    *(this->name) = *name;
-    *(this->population) = *population;
-    *(this->avgDistEnemyBase) = *avgDistEnemyBase;
-    *(this->avgDistFriendlyBase) = *avgDistFriendlyBase;
-    *(this->estEnemyInfantryPower) = *estEnemyInfantryPower;
-    *(this->estFriendlyInfantryPower) = *estFriendlyInfantryPower;
-    *(this->politicalInterference) = *politicalInterference;
+    *(this->name) = name;
+    *(this->population) = population;
+    *(this->avgDistEnemyBase) = avgDistEnemyBase;
+    *(this->avgDistFriendlyBase) = avgDistFriendlyBase;
+    *(this->estEnemyInfantryPower) = estEnemyInfantryPower;
+    *(this->estFriendlyInfantryPower) = estFriendlyInfantryPower;
+    *(this->politicalInterference) = politicalInterference;
     *(this->riskFactor) = 0;
     numCities++;
+}
+
+string City::getName()
+{
+    return *name;
 }
 
 int City::getPopulation()
@@ -64,39 +69,39 @@ double City::getRiskFactor()
     return *riskFactor;
 }
 
-void City::setName(string* name)
+void City::setName(string name)
 {
-    *(this->name) = *name;
+    *(this->name) = name;
 }
 
-void City::setPopulation(int* population)
+void City::setPopulation(int population)
 {
-    *(this->population) = *population;
+    *(this->population) = population;
 }
 
-void City::setAvgDistEnemyBase(double* avgDistEnemyBase)
+void City::setAvgDistEnemyBase(double avgDistEnemyBase)
 {
-    *(this->avgDistEnemyBase) = *avgDistEnemyBase;
+    *(this->avgDistEnemyBase) = avgDistEnemyBase;
 }
 
-void City::setAvgDistFriendlyBase(double* avgDistFriendlyBase)
+void City::setAvgDistFriendlyBase(double avgDistFriendlyBase)
 {
-    *(this->avgDistFriendlyBase) = *avgDistFriendlyBase;
+    *(this->avgDistFriendlyBase) = avgDistFriendlyBase;
 }
 
-void City::setEstEnemyInfantryPower(int* estEnemyInfantryPower)
+void City::setEstEnemyInfantryPower(int estEnemyInfantryPower)
 {
-    *(this->estEnemyInfantryPower) = *estEnemyInfantryPower;
+    *(this->estEnemyInfantryPower) = estEnemyInfantryPower;
 }
 
-void City::setEstFriendlyInfantryPower(int* estFriendlyInfantryPower)
+void City::setEstFriendlyInfantryPower(int estFriendlyInfantryPower)
 {
-    *(this->estFriendlyInfantryPower) = *estFriendlyInfantryPower;
+    *(this->estFriendlyInfantryPower) = estFriendlyInfantryPower;
 }
 
-void City::setPoliticalInterference(int* politicalInterference)
+void City::setPoliticalInterference(int politicalInterference)
 {
-    *(this->politicalInterference) = *politicalInterference;
+    *(this->politicalInterference) = politicalInterference;
 }
 
 void City::defineRiskFactor()

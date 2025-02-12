@@ -18,7 +18,8 @@ class City
         static int numCities;
     public:
         City();
-        City(string* name, int* population, double* avgDistEnemyBase, double* avgDistFriendlyBase, int* estEnemyInfantryPower, int* estFriendlyInfantryPower, int* politicalInterference);
+        City(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference);
+        string getName();
         int getPopulation();
         double getAvgDistEnemyBase();
         double getAvgDistFriendlyBase();
@@ -26,13 +27,13 @@ class City
         int getEstFriendlyInfantryPower();
         int getPoliticalInterference();
         double getRiskFactor();
-        void setName(string* name);
-        void setPopulation(int* population);
-        void setAvgDistEnemyBase(double* avgDistEnemyBase);
-        void setAvgDistFriendlyBase(double* avgDistFriendlyBase);
-        void setEstEnemyInfantryPower(int* estEnemyInfantryPower);
-        void setEstFriendlyInfantryPower(int* estFriendlyInfantryPower);
-        void setPoliticalInterference(int* politicalInterference);
+        void setName(string name);
+        void setPopulation(int population);
+        void setAvgDistEnemyBase(double avgDistEnemyBase);
+        void setAvgDistFriendlyBase(double avgDistFriendlyBase);
+        void setEstEnemyInfantryPower(int estEnemyInfantryPower);
+        void setEstFriendlyInfantryPower(int estFriendlyInfantryPower);
+        void setPoliticalInterference(int politicalInterference);
         void defineRiskFactor();
         ~City();
 };
