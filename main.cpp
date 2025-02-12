@@ -32,6 +32,63 @@ void getRowInfo(istream &file, int rowAnalyzed, string (&infoHolder)[7])
     }
 }
 
+void printCities(){
+    cout << setw(20) << "City Name" << setw(20) << "Population" << setw(25) << "Avg Dist Enemy Base" << setw(25) << "Avg Dist Friendly Base" << setw(30) << "Est Enemy Infantry Power" << setw(30) << "Est Friendly Infantry Power" << setw(23) << "Political Interference" << setw(15) << "Risk Factor" << endl;
+    for (int i = 0; i < rows - 1; i++)
+    {
+        cout << setw(20) << cities[i].getName() << setw(20) << cities[i].getPopulation() << setw(25) << cities[i].getAvgDistEnemyBase() << setw(25) << cities[i].getAvgDistFriendlyBase() << setw(30) << cities[i].getEstEnemyInfantryPower() << setw(30) << cities[i].getEstFriendlyInfantryPower() << setw(23) << cities[i].getPoliticalInterference() << setw(15) << cities[i].getRiskFactor() << endl;
+    }
+}
+
+void adminDashboard(){
+    int option;
+    do{
+        cout<<"============ Admin Dashboard ============\n1. Add City\n2. Modify City Information\n3. Delete City\n0. Return to Main Menu\n\nOption: ";
+        cin>> option;
+    } while (option < 0 || option > 3);
+
+    switch(option){
+        case 0:
+            menu();
+            break;
+        case 1:
+
+            break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+    }
+}
+
+int menu(){
+    int option;
+    do{
+        cout<<"============ Menu ============\n1. Display Current Cities\n2. Most Risky City\n3. Admin Dashboard Login\n0. Exit\n\nOption: ";
+        cin>> option;
+    } while (option < 0 || option > 3);
+
+    switch(option){
+        case 0:
+            return 0;
+            break;
+        case 1:
+            printCities();
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            adminDashboard();
+            break;
+    }
+
+    return 1;
+    
+}
+
 int main()
 {
 
@@ -44,7 +101,7 @@ int main()
         rows++;
     }
 
-    City *cities = new City[rows - 1];
+    City *cities = new City[100];
 
     string infoHolder[7];
 
@@ -63,13 +120,13 @@ int main()
 
     file.close();
 
-    cout << setw(20) << "City Name" << setw(20) << "Population" << setw(25) << "Avg Dist Enemy Base" << setw(25) << "Avg Dist Friendly Base" << setw(30) << "Est Enemy Infantry Power" << setw(30) << "Est Friendly Infantry Power" << setw(23) << "Political Interference" << setw(15) << "Risk Factor" << endl;
-    for (int i = 0; i < rows - 1; i++)
-    {
-        cout << setw(20) << cities[i].getName() << setw(20) << cities[i].getPopulation() << setw(25) << cities[i].getAvgDistEnemyBase() << setw(25) << cities[i].getAvgDistFriendlyBase() << setw(30) << cities[i].getEstEnemyInfantryPower() << setw(30) << cities[i].getEstFriendlyInfantryPower() << setw(23) << cities[i].getPoliticalInterference() << setw(15) << cities[i].getRiskFactor() << endl;
+    int finalChoice = 1;
+
+    while (finalChoice == 1){
+        finalChoice = menu();
     }
 
-    delete[] cities;
+    
 
     return 0;
 }
