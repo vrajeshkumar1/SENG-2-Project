@@ -106,7 +106,7 @@ void City::setPoliticalInterference(int politicalInterference)
 
 void City::defineRiskFactor()
 {
-    *(this->riskFactor) = 1; // we have to define this function
+    *(this->riskFactor) = (*population * 0.35) - (*avgDistFriendlyBase * 0.65) - (*avgDistFriendlyBase * 0.65) + (*estEnemyInfantryPower * 0.5) - (*estFriendlyInfantryPower * 0.5) + (*politicalInterference * 0.2); // we have to define this function
 }
 
 City::~City()
