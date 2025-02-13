@@ -1,9 +1,6 @@
 #include "City.h"
 #include<string>
 using namespace std;
-
-int City::numCities = 0;
-
 City::City()
 {
     *(this->name) = "";

@@ -17,7 +17,7 @@ class City
         double* riskFactor = new double;
         City* cities[];
     public:
-        static int numCities;
+        static int numCities=0;
         City();
         City(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference);
         string getName();
