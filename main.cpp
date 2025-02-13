@@ -52,10 +52,16 @@ void adminDashboard(){
             menu();
             break;
         case 1:
-
+            //As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
+            for(int i=0; i<cities[0].numCities; i++){
+              cities[i].defineRiskFactor();
+            }
             break;
         case 2:
-
+            //As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
+                for(int i=0; i<cities[0].numCities; i++){
+                    cities[i].defineRiskFactor();
+                }
             break;
         case 3:
 
