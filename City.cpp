@@ -14,6 +14,7 @@ City::City()
     *(this->estFriendlyInfantryPower) = 0;
     *(this->politicalInterference) = 0;
     *(this->riskFactor) = 0;
+    cities[numCities] = this;
     numCities++;
 }
 

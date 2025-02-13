@@ -15,8 +15,9 @@ class City
         int* estFriendlyInfantryPower = new int;
         int* politicalInterference = new int;
         double* riskFactor = new double;
-        static int numCities;
+        City* cities[];
     public:
+        static int numCities;
         City();
         City(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference);
         string getName();
