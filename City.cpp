@@ -113,6 +113,14 @@ void City::defineRiskFactor()
 
 City::~City()
 {
+    for(int i = 0; i < numCities; i++){
+    if(cities[i] == this){
+      for(int j = i; j < numCities; j++){
+        cities[j] = cities[j+1];
+      }
+      break;
+    }
+    }
     numCities--;
 }
 

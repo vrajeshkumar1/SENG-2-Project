@@ -1,0 +1,3 @@
+/mnt/p/thing1/cmake-build-debug/CMakeFiles/thing1.dir
+/mnt/p/thing1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/p/thing1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

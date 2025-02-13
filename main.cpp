@@ -5,7 +5,9 @@
 #include <iomanip>
 #include "City.h"
 using namespace std;
-
+int rows=0;
+City *cities = new City[100];
+int menu();
 void getRowInfo(istream &file, int rowAnalyzed, string (&infoHolder)[7])
 {
     string line;
@@ -97,8 +99,6 @@ int menu(){
 
 int main()
 {
-
-    int rows = 0;
     ifstream file("SENG2ExcelFile - Sheet1.csv");
     string line;
 
@@ -106,9 +106,6 @@ int main()
     {
         rows++;
     }
-
-    City *cities = new City[100];
-
     string infoHolder[7];
 
     for (int i = 2; i <= rows; i++)
