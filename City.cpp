@@ -1,6 +1,11 @@
 #include "City.h"
 #include<string>
 using namespace std;
+
+int City::numCities = 0;
+
+//============================ CONSTRUCTORS
+
 City::City()
 {
     *(this->name) = "";
@@ -12,7 +17,6 @@ City::City()
     *(this->politicalInterference) = 0;
     *(this->riskFactor) = 0;
     cities[numCities] = this;
-    numCities++;
 }
 
 City::City(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference)
@@ -25,8 +29,9 @@ City::City(string name, int population, double avgDistEnemyBase, double avgDistF
     *(this->estFriendlyInfantryPower) = estFriendlyInfantryPower;
     *(this->politicalInterference) = politicalInterference;
     *(this->riskFactor) = 0;
-    numCities++;
 }
+
+//============================ GETTERS
 
 string City::getName()
 {
@@ -68,6 +73,13 @@ double City::getRiskFactor()
     return *riskFactor;
 }
 
+int City::getNumCities()
+{
+    return numCities;
+}
+
+//============================ SETTERS
+
 void City::setName(string name)
 {
     *(this->name) = name;
@@ -107,6 +119,8 @@ void City::defineRiskFactor()
 {
     *(this->riskFactor) = (*population * 0.35) - (*avgDistFriendlyBase * 0.65) - (*avgDistFriendlyBase * 0.65) + (*estEnemyInfantryPower * 0.5) - (*estFriendlyInfantryPower * 0.5) + (*politicalInterference * 0.2); // we have to define this function
 }
+
+//============================ DESTRUCTOR
 
 City::~City()
 {
