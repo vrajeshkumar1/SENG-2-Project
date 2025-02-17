@@ -16,6 +16,7 @@ City::City()
     *(this->estFriendlyInfantryPower) = 0;
     *(this->politicalInterference) = 0;
     *(this->riskFactor) = 0;
+    this->factors={this->population,this->avgDistFriendlyBase,this->avgDistEnemyBase,this->estEnemyInfantryPower,this->estFriendlyInfantryPower,this->politicalInterference};
     cities[numCities] = this;
     numCities++;
 }
@@ -29,6 +30,7 @@ City::City(string name, int population, double avgDistEnemyBase, double avgDistF
     *(this->estEnemyInfantryPower) = estEnemyInfantryPower;
     *(this->estFriendlyInfantryPower) = estFriendlyInfantryPower;
     *(this->politicalInterference) = politicalInterference;
+    this->factors={this->population,this->avgDistFriendlyBase,this->avgDistEnemyBase,this->estEnemyInfantryPower,this->estFriendlyInfantryPower,this->politicalInterference};
     *(this->riskFactor) = 0;
     cities[numCities] = this;
     numCities++;
@@ -133,12 +135,13 @@ void City::setPoliticalInterference(int politicalInterference)
 void City::defineRiskFactor()
 {
      float weights[6]={0.35,-0.65,0.65,0.5,-0.5,0.2};
-     float scaledValues[6];
+     float scaledValues[this->getNumCities()][6];
      float temp[this->getNumCities()];
      for (int i = 0; i < 6; i++){
        for(int j=0; j<this->getNumCities(); j++){
-     scaledValues[i]=;
+         temp[j]=cities[j]->factors[i];
      }
+
      }
      this->riskFactor = 0;
      for (int i = 0; i < 6; i++){
