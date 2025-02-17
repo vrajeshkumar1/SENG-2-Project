@@ -30,6 +30,18 @@ City::City(string name, int population, double avgDistEnemyBase, double avgDistF
     *(this->politicalInterference) = politicalInterference;
     *(this->riskFactor) = 0;
 }
+ ~City(){
+   for(int i = 0; i < City::getNumCities(); i++){
+     if(cities[i] == this){
+       for(int j = i; j < (cities[i]->getNumCities()-1); j++){
+       cities[j] = cities[j+1];
+       }
+       cities[numCities] = NULL;
+       numCities--;
+       return;
+       }
+     }
+ }
 
 //============================ GETTERS
 
