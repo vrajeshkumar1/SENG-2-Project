@@ -131,18 +131,13 @@ void adminDashboard()
         break;
     case 1:
         // As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
-        for (int i = 0; i < City::getNumCities(); i++)
-        {
-            cities[i].defineRiskFactor();
-        }
+        //I got rid of the loop because then I may as well do it for all inside the function instead of calling the function this many times here
+        cities[0].defineRiskFactor();
         break;
     case 2:
-        // As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
-        for (int i = 0; i < City::getNumCities(); i++)
-        {
-            cities[i].defineRiskFactor();
-        }
-        break;
+     // As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
+     //I got rid of the loop because then I may as well do it for all inside the function instead of calling the function this many times here
+     cities[0].defineRiskFactor();
     case 3:
 
         break;
