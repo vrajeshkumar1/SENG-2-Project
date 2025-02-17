@@ -16,7 +16,12 @@ City::City()
     *(this->estFriendlyInfantryPower) = 0;
     *(this->politicalInterference) = 0;
     *(this->riskFactor) = 0;
-    this->factors={this->population,this->avgDistFriendlyBase,this->avgDistEnemyBase,this->estEnemyInfantryPower,this->estFriendlyInfantryPower,this->politicalInterference};
+    this->factors[0]=*(this->population);
+    this->factors[1]=*(this->avgDistFriendlyBase);
+    this->factors[2]=*this->avgDistEnemyBase;
+    this->factors[3]=*this->estEnemyInfantryPower;
+    this->factors[4]=*this->estFriendlyInfantryPower;
+    this->factors[5]=*this->politicalInterference;
     cities[numCities] = this;
     this->SerialNum=numCities;
     numCities++;
@@ -31,25 +36,17 @@ City::City(string name, int population, double avgDistEnemyBase, double avgDistF
     *(this->estEnemyInfantryPower) = estEnemyInfantryPower;
     *(this->estFriendlyInfantryPower) = estFriendlyInfantryPower;
     *(this->politicalInterference) = politicalInterference;
-    this->factors={this->population,this->avgDistFriendlyBase,this->avgDistEnemyBase,this->estEnemyInfantryPower,this->estFriendlyInfantryPower,this->politicalInterference};
+    this->factors[0]=*(this->population);
+    this->factors[1]=*(this->avgDistFriendlyBase);
+    this->factors[2]=*this->avgDistEnemyBase;
+    this->factors[3]=*this->estEnemyInfantryPower;
+    this->factors[4]=*this->estFriendlyInfantryPower;
+    this->factors[5]=*this->politicalInterference;
     *(this->riskFactor) = 0;
     cities[numCities] = this;
     this->SerialNum=numCities;
     numCities++;
 }
- City::~City(){
-   for(int i = 0; i < City::getNumCities(); i++){
-     if(cities[i] == this){
-       for(int j = i; j < (cities[i]->getNumCities()-1); j++){
-       cities[j] = cities[j+1];
-       }
-       cities[numCities] = NULL;
-       numCities--;
-       return;
-       }
-     }
- }
-
 //============================ GETTERS
 
 string City::getName()
@@ -96,9 +93,9 @@ int City::getNumCities()
 {
     return numCities;
 }
-int City::getSerialNum(){
-  return serialNum;
-
+int City::getSerialNum() {
+    return SerialNum;
+}
 //============================ SETTERS
 
 void City::setName(string name)
@@ -135,8 +132,8 @@ void City::setPoliticalInterference(int politicalInterference)
 {
     *(this->politicalInterference) = politicalInterference;
 }
-void City::setSerialNum(int serialNum){
-    this->serialNum = serialNum;
+void City::setSerialNum(int SerialNum){
+    this->SerialNum = SerialNum;
 }
 
 void City::defineRiskFactor()
@@ -184,7 +181,7 @@ void City::defineRiskFactor()
 //============================ DESTRUCTOR
 
 City::~City()
-{
+    {
     for(int i = this->getSerialNum(); i < (City::getNumCities()-1); i++){
       cities[i]=cities[i+1];
       cities[i]->setSerialNum(i);

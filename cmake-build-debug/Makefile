@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/p/thing1
+CMAKE_SOURCE_DIR = "/mnt/c/Users/Vrajesh Kumar/Desktop/untitled1"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/p/thing1/cmake-build-debug
+CMAKE_BINARY_DIR = "/mnt/c/Users/Vrajesh Kumar/Desktop/untitled1/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/p/thing1/cmake-build-debug/CMakeFiles /mnt/p/thing1/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Vrajesh Kumar/Desktop/untitled1/cmake-build-debug/CMakeFiles" "/mnt/c/Users/Vrajesh Kumar/Desktop/untitled1/cmake-build-debug//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/p/thing1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/mnt/c/Users/Vrajesh Kumar/Desktop/untitled1/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -129,6 +129,30 @@ thing1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/thing1.dir/build.make CMakeFiles/thing1.dir/build
 .PHONY : thing1/fast
 
+City.o: City.cpp.o
+.PHONY : City.o
+
+# target to build an object file
+City.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thing1.dir/build.make CMakeFiles/thing1.dir/City.cpp.o
+.PHONY : City.cpp.o
+
+City.i: City.cpp.i
+.PHONY : City.i
+
+# target to preprocess a source file
+City.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thing1.dir/build.make CMakeFiles/thing1.dir/City.cpp.i
+.PHONY : City.cpp.i
+
+City.s: City.cpp.s
+.PHONY : City.s
+
+# target to generate assembly for a file
+City.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thing1.dir/build.make CMakeFiles/thing1.dir/City.cpp.s
+.PHONY : City.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... thing1"
+	@echo "... City.o"
+	@echo "... City.i"
+	@echo "... City.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
