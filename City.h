@@ -16,10 +16,10 @@ class City
         int* politicalInterference = new int;
         double factors[6];
         int SerialNum;
-        double* riskFactor = new double;
         static City* cities[];
         static int numCities;
     public:
+        double* riskFactor = new double;
         City();
         City(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference);
         string getName();
@@ -40,6 +40,7 @@ class City
         void setEstEnemyInfantryPower(int estEnemyInfantryPower);
         void setEstFriendlyInfantryPower(int estFriendlyInfantryPower);
         void setPoliticalInterference(int politicalInterference);
+        void setRiskFactor(double riskFactor);
         void defineRiskFactor();
         ~City();
 };

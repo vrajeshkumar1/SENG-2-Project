@@ -148,11 +148,24 @@ void City::defineRiskFactor()
        for(int j=0; j<this->getNumCities(); j++){
          temp[j]=cities[j]->factors[i];
      }
-
+         if(i!=1&&i!=2){
+            for(int j=0; j<this->getNumCities(); j++){
+                scaledValues[j][i]=
+            }
+        }
+        else{
+            for(int j=0; j<this->getNumCities(); j++){
+                scaledValues[j][i]=
+            }
+        }
      }
-     this->riskFactor = 0;
+    for (int j = 0; j < this->getNumCities(); j++){
+     this->cities[j]->riskFactor = 0;
+     }
+     for (int j = 0; j < this->getNumCities(); j++){
      for (int i = 0; i < 6; i++){
-       *(this->riskFactor) += (scaledValues[i] * weights[i]);
+       *(this->cities[j]->riskFactor) += (scaledValues[j][i] * weights[i]);
+     }
      }
 }
 
@@ -164,6 +177,7 @@ City::~City()
       cities[i]=cities[i+1];
       cities[i]->setSerialNum(i);
     }
+    cities[City::getNumCities()] = NULL;
     numCities--;
 }
 
