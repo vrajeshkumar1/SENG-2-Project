@@ -15,7 +15,7 @@ class City
         int* estFriendlyInfantryPower = new int;
         int* politicalInterference = new int;
         double* riskFactor = new double;
-        City* cities[];
+        static City* cities[];
         static int numCities;
     public:
         City();
