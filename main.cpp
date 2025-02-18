@@ -35,8 +35,8 @@ int main()
         cities[i - 2].setEstEnemyInfantryPower(stoi(infoHolder[4]));
         cities[i - 2].setEstFriendlyInfantryPower(stoi(infoHolder[5]));
         cities[i - 2].setPoliticalInterference(stoi(infoHolder[6]));
-        cities[i - 2].defineRiskFactor();
     }
+    cities[0].defineRiskFactor();
 
     file.close();
 
@@ -111,7 +111,7 @@ void printCities()
     cout<<"------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < rows - 1; i++)
     {
-        cout << setw(20) << cities[i].getName() << setw(20) << cities[i].getPopulation() << setw(25) << cities[i].getAvgDistEnemyBase() << setw(25) << cities[i].getAvgDistFriendlyBase() << setw(29) << cities[i].getEstEnemyInfantryPower() << setw(29) << cities[i].getEstFriendlyInfantryPower() << setw(24) << cities[i].getPoliticalInterference() << setw(15) << cities[i].getRiskFactor() << endl;
+        cout << setw(20) << cities[i].getName() << setw(20) << cities[i].getPopulation() << setw(25) << cities[i].getAvgDistEnemyBase() << setw(25) << cities[i].getAvgDistFriendlyBase() << setw(29) << cities[i].getEstEnemyInfantryPower() << setw(29) << cities[i].getEstFriendlyInfantryPower() << setw(24) << cities[i].getPoliticalInterference() << setw(15) << cities[i].riskFactor << endl;
     }
 }
 
