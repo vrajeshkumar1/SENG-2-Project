@@ -1,3 +1,0 @@
-/mnt/c/Users/Vrajesh Kumar/Desktop/untitled1/cmake-build-debug/CMakeFiles/thing1.dir
-/mnt/c/Users/Vrajesh Kumar/Desktop/untitled1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/c/Users/Vrajesh Kumar/Desktop/untitled1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
