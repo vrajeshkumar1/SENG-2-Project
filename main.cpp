@@ -12,6 +12,7 @@ City *cities = new City[100];
 int menu();
 void getRowInfo(istream &file, int rowAnalyzed, string (&infoHolder)[7]);
 void printCities();
+void addCity();
 void adminDashboard();
 
 int main()
@@ -68,7 +69,7 @@ int menu()
         printCities();
         break;
     case 2:
-
+    
         break;
     case 3:
         adminDashboard();
@@ -132,6 +133,7 @@ void adminDashboard()
     case 1:
         // As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
         //I got rid of the loop because then I may as well do it for all inside the function instead of calling the function this many times here
+        void addCity();
         cities[0].defineRiskFactor();
         break;
     case 2:
