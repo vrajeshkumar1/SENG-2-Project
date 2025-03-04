@@ -79,6 +79,12 @@ int menu()
     return 1;
 }
 
+void printMostRiskyCity(){
+    for (int i=0; i<rows; i++){
+
+    }
+}
+
 void getRowInfo(istream &file, int rowAnalyzed, string (&infoHolder)[7])
 {
     string line;
@@ -131,10 +137,12 @@ void adminDashboard()
         menu();
         break;
     case 1:
+
+        
         // As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
         //I got rid of the loop because then I may as well do it for all inside the function instead of calling the function this many times here
-        void addCity();
-        cities[0].defineRiskFactor();
+        //void addCity();
+        //cities[0].defineRiskFactor();
         break;
     case 2:
      // As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
@@ -144,4 +152,25 @@ void adminDashboard()
 
         break;
     }
+}
+
+void addCity()
+{
+    cout<<"\n\nTest: "<<cities[rows].getName()<<endl;
+    /*cout << "Adding City\n";
+    cout << "=============\n";
+    cout << "Enter City Name: ";
+    cin >> name;
+    cout << "Enter Population: ";
+    cin >> population;
+    cout << "Enter Average Distance to Enemy Base: ";
+    cin >> avgDistEnemyBase;
+    cout << "Enter Average Distance to Friendly Base: ";
+    cin >> avgDistFriendlyBase;
+    cout << "Enter Estimated Enemy Infantry Power: ";
+    cin >> estEnemyInfantryPower;
+    cout << "Enter Estimated Friendly Infantry Power: ";
+    cin >> estFriendlyInfantryPower;
+    cout << "Enter Political Interference: ";
+    cin >> politicalInterference;*/
 }

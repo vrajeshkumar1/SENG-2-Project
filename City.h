@@ -40,7 +40,6 @@ class City
         void setEstFriendlyInfantryPower(int estFriendlyInfantryPower);
         void setPoliticalInterference(int politicalInterference);
         void defineRiskFactor();
-        void addCity(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference);
         ~City();
 };
 

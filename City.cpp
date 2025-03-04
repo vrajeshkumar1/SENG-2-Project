@@ -1,5 +1,6 @@
 #include "City.h"
-#include<string>
+#include <string>
+#include <iostream>
 using namespace std;
 
 int City::numCities = 0;
@@ -132,6 +133,8 @@ void City::setSerialNum(int SerialNum){
     this->SerialNum = SerialNum;
 }
 
+// =================== Functions
+
 void City::defineRiskFactor()
 {
      double weights[6]={0.35,-0.65,0.65,0.5,-0.5,0.2};
@@ -172,26 +175,6 @@ void City::defineRiskFactor()
        this->cities[j]->riskFactor += (scaledValues[j][i] * weights[i]);
      }
      }
-}
-
-void City::addCity(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference)
-{
-    cout << "Adding City\n";
-    cout << "=============\n";
-    cout << "Enter City Name: ";
-    cin >> name;
-    cout << "Enter Population: ";
-    cin >> population;
-    cout << "Enter Average Distance to Enemy Base: ";
-    cin >> avgDistEnemyBase;
-    cout << "Enter Average Distance to Friendly Base: ";
-    cin >> avgDistFriendlyBase;
-    cout << "Enter Estimated Enemy Infantry Power: ";
-    cin >> estEnemyInfantryPower;
-    cout << "Enter Estimated Friendly Infantry Power: ";
-    cin >> estFriendlyInfantryPower;
-    cout << "Enter Political Interference: ";
-    cin >> politicalInterference;
 }
 
 //============================ DESTRUCTOR
