@@ -2,6 +2,7 @@
 #define CITY_H
 
 #include <string>
+#include <vector>
 using namespace std;
 
 class City
@@ -18,7 +19,6 @@ class City
         static int numCities;
     public:
         double factors[6];
-        static City* cities[100];
         double riskFactor;
         City();
         City(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference);
@@ -39,7 +39,7 @@ class City
         void setEstEnemyInfantryPower(int estEnemyInfantryPower);
         void setEstFriendlyInfantryPower(int estFriendlyInfantryPower);
         void setPoliticalInterference(int politicalInterference);
-        void defineRiskFactor();
+        static void defineRiskFactor(vector<City> &cities, int closestCityIndex);
         ~City();
 };
 

@@ -3,22 +3,27 @@
 #include <cstdlib>
 #include <string>
 #include <iomanip>
+#include <vector>
 #include "City.h"
 using namespace std;
 
 int rows = 0;
-City *cities = new City[100];
+vector<City> cities;
 
 int menu();
-void getRowInfo(istream &file, int rowAnalyzed, string (&infoHolder)[7]);
+void getRowInfo(istream &file, string (&infoHolder)[7]);
 void printCities();
 void addCity();
 void adminDashboard();
+int getclosestCityIndex(vector<City> &cities);
 
 int main()
 {
     ifstream file("SENG2ExcelFile - Sheet1.csv");
     string line;
+
+    // Skip the header line
+    getline(file, line);
 
     while (getline(file, line))
     {
@@ -26,18 +31,27 @@ int main()
     }
     string infoHolder[7];
 
-    for (int i = 2; i <= rows; i++)
+    file.clear();
+    file.seekg(0, ios::beg); // move read pointer to the beginning of the file
+
+    // Skip the header line again
+    getline(file, line);
+
+    for (int i = 0; i < rows; i++)
     {
-        getRowInfo(file, i, infoHolder);
-        cities[i - 2].setName(infoHolder[0]);
-        cities[i - 2].setPopulation(stoi(infoHolder[1]));
-        cities[i - 2].setAvgDistEnemyBase(stod(infoHolder[2]));
-        cities[i - 2].setAvgDistFriendlyBase(stod(infoHolder[3]));
-        cities[i - 2].setEstEnemyInfantryPower(stoi(infoHolder[4]));
-        cities[i - 2].setEstFriendlyInfantryPower(stoi(infoHolder[5]));
-        cities[i - 2].setPoliticalInterference(stoi(infoHolder[6]));
+        getRowInfo(file, infoHolder);
+        City tempCity;
+        tempCity.setName(infoHolder[0]);
+        tempCity.setPopulation(stoi(infoHolder[1]));
+        tempCity.setAvgDistEnemyBase(stod(infoHolder[2]));
+        tempCity.setAvgDistFriendlyBase(stod(infoHolder[3]));
+        tempCity.setEstEnemyInfantryPower(stoi(infoHolder[4]));
+        tempCity.setEstFriendlyInfantryPower(stoi(infoHolder[5]));
+        tempCity.setPoliticalInterference(stoi(infoHolder[6]));
+        cities.push_back(tempCity);
     }
-    cities[0].defineRiskFactor();
+
+    City::defineRiskFactor(cities, getclosestCityIndex(cities));
 
     file.close();
 
@@ -85,17 +99,10 @@ void printMostRiskyCity(){
     }
 }
 
-void getRowInfo(istream &file, int rowAnalyzed, string (&infoHolder)[7])
+void getRowInfo(istream &file, string (&infoHolder)[7])
 {
     string line;
-
-    file.clear();
-    file.seekg(0, ios::beg); // move read pointer to the beginning of the file
-
-    for (int i = 1; i <= rowAnalyzed; i++)
-    {
-        getline(file, line); // find row to analyze
-    }
+    getline(file, line); // read the row
 
     size_t pos = 0;
     int cellIndex = 0;
@@ -106,17 +113,17 @@ void getRowInfo(istream &file, int rowAnalyzed, string (&infoHolder)[7])
         line.erase(0, pos + 1);
     }
     if (cellIndex < 7)
-    { // if there are less than 6 cells in the row
+    { // if there are less than 7 cells in the row
         infoHolder[cellIndex] = line;
     }
 }
 
 void printCities()
 {
-    cout<<"============================================================ Cities: "<< City::getNumCities()<<" ===================================================================================\n";
+    cout<<"============================================================ Cities: "<< cities.size() <<" ===================================================================================\n";
     cout << setw(20) << "City Name|" << setw(20) << "Population|" << setw(25) << "Avg Dist Enemy Base|" << setw(25) << "Avg Dist Friendly Base|" << setw(29) << "Est Enemy Infantry Power|" << setw(29) << "Est Friendly Infantry Power|" << setw(24) << "Political Interference|" << setw(15) << "Risk Factor|" << endl;
     cout<<"------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
-    for (int i = 0; i < rows - 1; i++)
+    for (int i = 0; i < cities.size(); i++)
     {
         cout << setw(20) << cities[i].getName() << setw(20) << cities[i].getPopulation() << setw(25) << cities[i].getAvgDistEnemyBase() << setw(25) << cities[i].getAvgDistFriendlyBase() << setw(29) << cities[i].getEstEnemyInfantryPower() << setw(29) << cities[i].getEstFriendlyInfantryPower() << setw(24) << cities[i].getPoliticalInterference() << setw(15) << cities[i].riskFactor << endl;
     }
@@ -137,27 +144,28 @@ void adminDashboard()
         menu();
         break;
     case 1:
-
-        
-        // As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
-        //I got rid of the loop because then I may as well do it for all inside the function instead of calling the function this many times here
-        //void addCity();
-        //cities[0].defineRiskFactor();
+        addCity();
+        // Recalculate risk factor for all cities
+        City::defineRiskFactor(cities, getclosestCityIndex(cities));
         break;
     case 2:
-     // As risk factor is scaled relatively, when cities are added or modified, it will be recalculated for all
-     //I got rid of the loop because then I may as well do it for all inside the function instead of calling the function this many times here
-     cities[0].defineRiskFactor();
+        // Recalculate risk factor for all cities
+        City::defineRiskFactor(cities, getclosestCityIndex(cities));
+        break;
     case 3:
-
+        // Implement delete city functionality
         break;
     }
 }
 
 void addCity()
 {
-    cout<<"\n\nTest: "<<cities[rows].getName()<<endl;
-    /*cout << "Adding City\n";
+    string name;
+    int population;
+    double avgDistEnemyBase, avgDistFriendlyBase;
+    int estEnemyInfantryPower, estFriendlyInfantryPower, politicalInterference;
+
+    cout << "Adding City\n";
     cout << "=============\n";
     cout << "Enter City Name: ";
     cin >> name;
@@ -172,5 +180,24 @@ void addCity()
     cout << "Enter Estimated Friendly Infantry Power: ";
     cin >> estFriendlyInfantryPower;
     cout << "Enter Political Interference: ";
-    cin >> politicalInterference;*/
+    cin >> politicalInterference;
+
+    City newCity(name, population, avgDistEnemyBase, avgDistFriendlyBase, estEnemyInfantryPower, estFriendlyInfantryPower, politicalInterference);
+    cities.push_back(newCity);
+    rows++;
+}
+
+int getclosestCityIndex(vector<City> &cities)
+{
+    double min = cities[0].getAvgDistEnemyBase();
+    int index = 0;
+    for (int i = 1; i < cities.size(); i++)
+    {
+        if (cities[i].getAvgDistEnemyBase() < min)
+        {
+            min = cities[i].getAvgDistEnemyBase();
+            index = i;
+        }
+    }
+    return index;
 }
