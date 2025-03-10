@@ -139,8 +139,7 @@ void City::defineRiskFactor(vector<City*> &cities)
 {
     for(int i=0; i<cities.size(); i++)
     {
-    cities[i]->riskFactor=(cities[i]->getAvgDistFriendlyBase()/cities[i]->getAvgDistEnemyBase())+cities[i]->getPopulation()+cities[i]->getEstEnemyInfantryPower()-cities[i]->getEstFriendlyInfantryPower();
-    // using scale of 1-10
+    cities[i]->riskFactor=(cities[i]->getAvgDistFriendlyBase()/cities[i]->getAvgDistEnemyBase())+0.35*(cities[i]->getPopulation()/10000.0)+0.5*(cities[i]->getEstEnemyInfantryPower()-cities[i]->getEstFriendlyInfantryPower());
     }
 }
 
