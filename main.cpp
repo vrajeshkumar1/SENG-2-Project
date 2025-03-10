@@ -10,7 +10,7 @@ using namespace std;
 // ==================== Global Variables
 
 int rows = 0;
-vector<City> cities; // we made cities a vector for scalability
+vector<City*> cities; // we made cities a vector for scalability
 
 string adminUsername = "admin";
 string adminPassword = "1234";
@@ -53,18 +53,18 @@ int main()
     for (int i = 0; i < rows; i++)
     {
         getRowInfo(file, infoHolder);
-        City tempCity;
-        tempCity.setName(infoHolder[0]);
-        tempCity.setPopulation(stoi(infoHolder[1]));
-        tempCity.setAvgDistEnemyBase(stod(infoHolder[2]));
-        tempCity.setAvgDistFriendlyBase(stod(infoHolder[3]));
-        tempCity.setEstEnemyInfantryPower(stoi(infoHolder[4]));
-        tempCity.setEstFriendlyInfantryPower(stoi(infoHolder[5]));
-        tempCity.setPoliticalInterference(stoi(infoHolder[6]));
+        City* tempCity=new City;
+        tempCity->setName(infoHolder[0]);
+        tempCity->setPopulation(stoi(infoHolder[1]));
+        tempCity->setAvgDistEnemyBase(stod(infoHolder[2]));
+        tempCity->setAvgDistFriendlyBase(stod(infoHolder[3]));
+        tempCity->setEstEnemyInfantryPower(stoi(infoHolder[4]));
+        tempCity->setEstFriendlyInfantryPower(stoi(infoHolder[5]));
+        tempCity->setPoliticalInterference(stoi(infoHolder[6]));
         cities.push_back(tempCity);
     }
 
-    City::defineRiskFactor(cities, getclosestCityIndex(cities));
+    City::defineRiskFactor(cities);
 
     file.close();
 
@@ -145,15 +145,15 @@ void adminDashboard()
             break;
         case 1:
             addCity();
-            City::defineRiskFactor(cities, getclosestCityIndex(cities));
+            City::defineRiskFactor(cities);
             break;
         case 2:
             modifyCity();
-            City::defineRiskFactor(cities, getclosestCityIndex(cities));
+            City::defineRiskFactor(cities);
             break;
         case 3:
             deleteCity();
-            City::defineRiskFactor(cities, getclosestCityIndex(cities));
+            City::defineRiskFactor(cities);
             break;
         default:
             cout << "Invalid option\n";
@@ -167,27 +167,28 @@ void adminDashboard()
 
 void printMostRiskyCity()
 {
-    double max = cities[0].riskFactor;
+    double max = cities[0]->riskFactor;
     int index = 0;
     for (int i = 1; i < cities.size(); i++)
     {
-        if (cities[i].riskFactor > max)
+        if (cities[i]->riskFactor > max)
         {
-            max = cities[i].riskFactor;
+            max = cities[i]->riskFactor;
             index = i;
         }
     }
-    cout << "\nMost Risky City: " << cities[index].getName() << " with a risk factor of " << cities[index].riskFactor << endl;
+    cout << "\nMost Risky City: " << cities[index]->getName() << " with a risk factor of " << cities[index]->riskFactor << endl;
 }
 
 void printCities()
 {
+    cities[0]->defineRiskFactor(cities);
     cout << "============================================================ Cities: " << cities.size() << " ===================================================================================\n";
     cout << setw(20) << "City Name|" << setw(20) << "Population|" << setw(25) << "Avg Dist Enemy Base|" << setw(25) << "Avg Dist Friendly Base|" << setw(29) << "Est Enemy Infantry Power|" << setw(29) << "Est Friendly Infantry Power|" << setw(24) << "Political Interference|" << setw(15) << "Risk Factor|" << endl;
     cout << "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < cities.size(); i++)
     {
-        cout << setw(20) << cities[i].getName() << setw(20) << cities[i].getPopulation() << setw(25) << cities[i].getAvgDistEnemyBase() << setw(25) << cities[i].getAvgDistFriendlyBase() << setw(29) << cities[i].getEstEnemyInfantryPower() << setw(29) << cities[i].getEstFriendlyInfantryPower() << setw(24) << cities[i].getPoliticalInterference() << setw(15) << cities[i].riskFactor << endl;
+        cout << setw(20) << cities[i]->getName() << setw(20) << cities[i]->getPopulation() << setw(25) << cities[i]->getAvgDistEnemyBase() << setw(25) << cities[i]->getAvgDistFriendlyBase() << setw(29) << cities[i]->getEstEnemyInfantryPower() << setw(29) << cities[i]->getEstFriendlyInfantryPower() << setw(24) << cities[i]->getPoliticalInterference() << setw(15) << cities[i]->riskFactor << endl;
     }
 }
 
@@ -218,7 +219,7 @@ void addCity()
     cin >> politicalInterference;
 
     City newCity(name, population, avgDistEnemyBase, avgDistFriendlyBase, estEnemyInfantryPower, estFriendlyInfantryPower, politicalInterference);
-    cities.push_back(newCity);
+    cities.push_back(&newCity);
     rows++;
 }
 
@@ -229,7 +230,7 @@ void deleteCity()
     cin >> name;
     for (int i = 0; i < cities.size(); i++)
     {
-        if (cities[i].getName() == name)
+        if (cities[i]->getName() == name)
         {
             cities.erase(cities.begin() + i);
             cout << "City deleted successfully\n";
@@ -246,13 +247,13 @@ void modifyCity()
     cin >> name;
     for (int i = 0; i < cities.size(); i++)
     {
-        if (cities[i].getName() == name)
+        if (cities[i]->getName() == name)
         {
             int option;
             do
             {
 
-                cout << "\n\n\n~~~~~~~~~ Modify City Information Panel: "<<cities[i].getName()<<" ~~~~~~~~~\nPlease select the field you want to modify\n1. City Name\n2. Population\n3. Average Distance to Enemy Base\n4. Average Distance to Friendly Base\n5. Estimated Enemy Infantry Power\n6. Estimated Friendly Infantry Power\n7. Political Interference\n8. All fields\n0. Exit\n\nOption: ";
+                cout << "\n\n\n~~~~~~~~~ Modify City Information Panel: "<<cities[i]->getName()<<" ~~~~~~~~~\nPlease select the field you want to modify\n1. City Name\n2. Population\n3. Average Distance to Enemy Base\n4. Average Distance to Friendly Base\n5. Estimated Enemy Infantry Power\n6. Estimated Friendly Infantry Power\n7. Political Interference\n8. All fields\n0. Exit\n\nOption: ";
                 cin >> option;
                 string input;
                 switch (option)
@@ -262,60 +263,60 @@ void modifyCity()
                 case 1:
                     cout << "Enter new City Name: ";
                     cin >> input;
-                    cities[i].setName(input);
+                    cities[i]->setName(input);
                     break;
                 case 2:
                     cout << "Enter new Population: ";
                     cin >> input;
-                    cities[i].setPopulation(stoi(input));
+                    cities[i]->setPopulation(stoi(input));
                     break;
                 case 3:
                     cout << "Enter new Average Distance to Enemy Base: ";
                     cin >> input;
-                    cities[i].setAvgDistEnemyBase(stod(input));
+                    cities[i]->setAvgDistEnemyBase(stod(input));
                     break;
                 case 4:
                     cout << "Enter new Average Distance to Friendly Base: ";
                     cin >> input;
-                    cities[i].setAvgDistFriendlyBase(stod(input));
+                    cities[i]->setAvgDistFriendlyBase(stod(input));
                     break;
                 case 5:
                     cout << "Enter new Estimated Enemy Infantry Power: ";
                     cin >> input;
-                    cities[i].setEstEnemyInfantryPower(stoi(input));
+                    cities[i]->setEstEnemyInfantryPower(stoi(input));
                     break;
                 case 6:
                     cout << "Enter new Estimated Friendly Infantry Power: ";
                     cin >> input;
-                    cities[i].setEstFriendlyInfantryPower(stoi(input));
+                    cities[i]->setEstFriendlyInfantryPower(stoi(input));
                     break;
                 case 7:
                     cout << "Enter new Political Interference: ";
                     cin >> input;
-                    cities[i].setPoliticalInterference(stoi(input));
+                    cities[i]->setPoliticalInterference(stoi(input));
                     break;
                 case 8:
                     cout << "Enter new City Name: ";
                     cin >> input;
-                    cities[i].setName(input);
+                    cities[i]->setName(input);
                     cout << "Enter new Population: ";
                     cin >> input;
-                    cities[i].setPopulation(stoi(input));
+                    cities[i]->setPopulation(stoi(input));
                     cout << "Enter new Average Distance to Enemy Base: ";
                     cin >> input;
-                    cities[i].setAvgDistEnemyBase(stod(input));
+                    cities[i]->setAvgDistEnemyBase(stod(input));
                     cout << "Enter new Average Distance to Friendly Base: ";
                     cin >> input;
-                    cities[i].setAvgDistFriendlyBase(stod(input));
+                    cities[i]->setAvgDistFriendlyBase(stod(input));
                     cout << "Enter new Estimated Enemy Infantry Power: ";
                     cin >> input;
-                    cities[i].setEstEnemyInfantryPower(stoi(input));
+                    cities[i]->setEstEnemyInfantryPower(stoi(input));
                     cout << "Enter new Estimated Friendly Infantry Power: ";
                     cin >> input;
-                    cities[i].setEstFriendlyInfantryPower(stoi(input));
+                    cities[i]->setEstFriendlyInfantryPower(stoi(input));
                     cout << "Enter new Political Interference: ";
                     cin >> input;
-                    cities[i].setPoliticalInterference(stoi(input));
+                    cities[i]->setPoliticalInterference(stoi(input));
                     cout << "City modified successfully\n";
                     break;
                 default:
