@@ -60,7 +60,6 @@ int main()
         tempCity->setAvgDistFriendlyBase(stod(infoHolder[3]));
         tempCity->setEstEnemyInfantryPower(stoi(infoHolder[4]));
         tempCity->setEstFriendlyInfantryPower(stoi(infoHolder[5]));
-        tempCity->setPoliticalInterference(stoi(infoHolder[6]));
         cities.push_back(tempCity);
     }
 
@@ -199,7 +198,7 @@ void addCity()
     string name;
     int population;
     double avgDistEnemyBase, avgDistFriendlyBase;
-    int estEnemyInfantryPower, estFriendlyInfantryPower, politicalInterference;
+    int estEnemyInfantryPower, estFriendlyInfantryPower;
 
     cout << "Adding City\n";
     cout << "=============\n";
@@ -215,10 +214,8 @@ void addCity()
     cin >> estEnemyInfantryPower;
     cout << "Enter Estimated Friendly Infantry Power: ";
     cin >> estFriendlyInfantryPower;
-    cout << "Enter Political Interference: ";
-    cin >> politicalInterference;
 
-    City newCity(name, population, avgDistEnemyBase, avgDistFriendlyBase, estEnemyInfantryPower, estFriendlyInfantryPower, politicalInterference);
+    City newCity(name, population, avgDistEnemyBase, avgDistFriendlyBase, estEnemyInfantryPower, estFriendlyInfantryPower);
     cities.push_back(&newCity);
     rows++;
 }
@@ -253,7 +250,7 @@ void modifyCity()
             do
             {
 
-                cout << "\n\n\n~~~~~~~~~ Modify City Information Panel: "<<cities[i]->getName()<<" ~~~~~~~~~\nPlease select the field you want to modify\n1. City Name\n2. Population\n3. Average Distance to Enemy Base\n4. Average Distance to Friendly Base\n5. Estimated Enemy Infantry Power\n6. Estimated Friendly Infantry Power\n7. Political Interference\n8. All fields\n0. Exit\n\nOption: ";
+                cout << "\n\n\n~~~~~~~~~ Modify City Information Panel: "<<cities[i]->getName()<<" ~~~~~~~~~\nPlease select the field you want to modify\n1. City Name\n2. Population\n3. Average Distance to Enemy Base\n4. Average Distance to Friendly Base\n5. Estimated Enemy Infantry Power\n6. Estimated Friendly Infantry Power\n7. All fields\n0. Exit\n\nOption: ";
                 cin >> option;
                 string input;
                 switch (option)
@@ -291,11 +288,6 @@ void modifyCity()
                     cities[i]->setEstFriendlyInfantryPower(stoi(input));
                     break;
                 case 7:
-                    cout << "Enter new Political Interference: ";
-                    cin >> input;
-                    cities[i]->setPoliticalInterference(stoi(input));
-                    break;
-                case 8:
                     cout << "Enter new City Name: ";
                     cin >> input;
                     cities[i]->setName(input);
@@ -314,9 +306,6 @@ void modifyCity()
                     cout << "Enter new Estimated Friendly Infantry Power: ";
                     cin >> input;
                     cities[i]->setEstFriendlyInfantryPower(stoi(input));
-                    cout << "Enter new Political Interference: ";
-                    cin >> input;
-                    cities[i]->setPoliticalInterference(stoi(input));
                     cout << "City modified successfully\n";
                     break;
                 default:

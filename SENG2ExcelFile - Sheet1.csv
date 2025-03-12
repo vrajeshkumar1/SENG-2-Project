@@ -1,8 +1,8 @@
 City,Population,Avg. Distance to closest enemy military base (km),Avg. distance to defending military base (km),Estimated enemy infantry power,Estimated defending infantry power,Political interference of conflict,Source for distance to enemy bases,,,,,,,source for distance to friendly bases
-Bruges,119869,80.92,42.54,5,2,1,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521032
-Antwerp,544759,25.38,6.84,4,5,1,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521033
-Liege,195779,90.94,20.22,6,5,1,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521034
-Kortrijk,80032,183.63,51.89,8,2,1,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521035
-Charleroi,203332,125.75,25.49,5,4,1,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521036
-Brussels,196828,127.98,10.96,6,4,1,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521037
-TEST,2089401,42.8,20.2,4,1,0,,,,,,,,
+Bruges,119869,80.92,42.54,5,2,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521032
+Antwerp,544759,25.38,6.84,4,5,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521033
+Liege,195779,90.94,20.22,6,5,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521034
+Kortrijk,80032,183.63,51.89,8,2,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521035
+Charleroi,203332,125.75,25.49,5,4,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521036
+Brussels,196828,127.98,10.96,6,4,Used coordinates of base from wikipedia and city from google maps and put into https://boulter.com/gps/distance/,,,,,,,Google maps and https://www.mil-airfields.de/be/list.htm#521037
+TEST,2089401,42.8,20.2,4,1,,,,,,,,

@@ -16,19 +16,17 @@ City::City()
     this->avgDistFriendlyBase = 0;
     this->estEnemyInfantryPower = 0;
     this->estFriendlyInfantryPower = 0;
-    this->politicalInterference = 0;
     this->riskFactor = 0;
     this->factors[0] = this->population;
     this->factors[1] = this->avgDistFriendlyBase;
     this->factors[2] = this->avgDistEnemyBase;
     this->factors[3] = this->estEnemyInfantryPower;
     this->factors[4] = this->estFriendlyInfantryPower;
-    this->factors[5] = this->politicalInterference;
     this->SerialNum = this->numCities;
     numCities++;
 }
 
-City::City(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower, int politicalInterference)
+City::City(string name, int population, double avgDistEnemyBase, double avgDistFriendlyBase, int estEnemyInfantryPower, int estFriendlyInfantryPower)
 {
     this->name = name;
     this->population = population;
@@ -36,13 +34,11 @@ City::City(string name, int population, double avgDistEnemyBase, double avgDistF
     this->avgDistFriendlyBase = avgDistFriendlyBase;
     this->estEnemyInfantryPower = estEnemyInfantryPower;
     this->estFriendlyInfantryPower = estFriendlyInfantryPower;
-    this->politicalInterference = politicalInterference;
     this->factors[0] = this->population;
     this->factors[1] = this->avgDistFriendlyBase;
     this->factors[2] = this->avgDistEnemyBase;
     this->factors[3] = this->estEnemyInfantryPower;
     this->factors[4] = this->estFriendlyInfantryPower;
-    this->factors[5] = this->politicalInterference;
     this->riskFactor = 0;
     this->SerialNum = this->numCities;
     numCities++;
@@ -79,10 +75,6 @@ int City::getEstFriendlyInfantryPower()
     return estFriendlyInfantryPower;
 }
 
-int City::getPoliticalInterference()
-{
-    return politicalInterference;
-}
 
 int City::getNumCities()
 {
@@ -124,10 +116,6 @@ void City::setEstFriendlyInfantryPower(int estFriendlyInfantryPower)
     this->estFriendlyInfantryPower = estFriendlyInfantryPower;
 }
 
-void City::setPoliticalInterference(int politicalInterference)
-{
-    this->politicalInterference = politicalInterference;
-}
 void City::setSerialNum(int SerialNum)
 {
     this->SerialNum = SerialNum;
