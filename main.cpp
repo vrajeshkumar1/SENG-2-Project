@@ -27,6 +27,7 @@ void modifyCity();
 void printMostRiskyCity();
 void adminDashboard();
 void adminLogin();
+void updateCSV(string filename = "SENG2ExcelFile - Sheet1.csv");
 int getclosestCityIndex(vector<City> &cities);
 
 // ==================== Main Function
@@ -84,7 +85,7 @@ void menu()
         switch (option)
         {
         case 0:
-            exit(0);
+            exit(0); //We used this to exit the program properly and avoid cases of repeated menu displays due to recursive function calls
             break;
         case 1:
             printCities();
@@ -136,7 +137,7 @@ void adminDashboard()
     int option;
     do
     {
-        cout << "============ !! Admin Dashboard !! ============\n1. Add City\n2. Modify City Information\n3. Delete City\n0. Return to Main Menu\n\nOption: ";
+        cout << "============ !! Admin Dashboard !! ============\n1. Add City\n2. Modify City Information\n3. Delete City\n4. Update CSV file\n0. Return to Main Menu\n\nOption: ";
         cin >> option;
         switch (option)
         {
@@ -153,6 +154,29 @@ void adminDashboard()
         case 3:
             deleteCity();
             City::defineRiskFactor(cities);
+            break;
+        case 4:
+            cout<<"Would you like to update the default CSV file or create a new one?\n1. Default CSV file\n2. New CSV file\nOption: ";
+            cin>>option;
+            if(option==1){
+                cout<<"WARNING! This will overwrite the default CSV file. Are you sure you want to continue?\n1. Yes\n2. No\nOption: ";
+                cin>>option;
+                if(option==1){
+                    updateCSV();
+                } else {
+                    cout<<"Operation cancelled\n";
+                    option = 4;
+                    break;
+                }
+            }else if(option==2){
+                string filename;
+                cout<<"Enter the name of the new CSV file (IT MUST END WITH \".csv\"): ";
+                cin>>filename;
+                updateCSV(filename);
+            }else{
+                cout<<"Invalid option\n";
+            }
+            option=4;
             break;
         default:
             cout << "Invalid option\n";
@@ -353,4 +377,17 @@ int getclosestCityIndex(vector<City> &cities)
         }
     }
     return index;
+}
+
+void updateCSV(string filename){
+
+    fstream file(filename, ios::out | ios::trunc);
+    file << "City Name,Population,Average Distance to Enemy Base,Average Distance to Friendly Base,Estimated Enemy Infantry Power,Estimated Friendly Infantry Power\n";
+    for (int i = 0; i < cities.size(); i++)
+    {
+        file << cities[i]->getName() << "," << cities[i]->getPopulation() << "," << cities[i]->getAvgDistEnemyBase() << "," << cities[i]->getAvgDistFriendlyBase() << "," << cities[i]->getEstEnemyInfantryPower() << "," << cities[i]->getEstFriendlyInfantryPower() << "\n";
+    }
+    file.close();
+
+    cout<<"\nCSV file updated successfully\n";
 }
