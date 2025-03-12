@@ -183,11 +183,11 @@ void printCities()
 {
     cities[0]->defineRiskFactor(cities);
     cout << "============================================================ Cities: " << cities.size() << " ===================================================================================\n";
-    cout << setw(20) << "City Name|" << setw(20) << "Population|" << setw(25) << "Avg Dist Enemy Base|" << setw(25) << "Avg Dist Friendly Base|" << setw(29) << "Est Enemy Infantry Power|" << setw(29) << "Est Friendly Infantry Power|" << setw(24) << "Political Interference|" << setw(15) << "Risk Factor|" << endl;
+    cout << setw(20) << "City Name|" << setw(20) << "Population|" << setw(25) << "Avg Dist Enemy Base|" << setw(25) << "Avg Dist Friendly Base|" << setw(29) << "Est Enemy Infantry Power|" << setw(29) << "Est Friendly Infantry Power|"  << setw(15) << "Risk Factor|" << endl;
     cout << "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < cities.size(); i++)
     {
-        cout << setw(20) << cities[i]->getName() << setw(20) << cities[i]->getPopulation() << setw(25) << cities[i]->getAvgDistEnemyBase() << setw(25) << cities[i]->getAvgDistFriendlyBase() << setw(29) << cities[i]->getEstEnemyInfantryPower() << setw(29) << cities[i]->getEstFriendlyInfantryPower() << setw(24) << cities[i]->getPoliticalInterference() << setw(15) << cities[i]->riskFactor << endl;
+        cout << setw(20) << cities[i]->getName() << setw(20) << cities[i]->getPopulation() << setw(25) << cities[i]->getAvgDistEnemyBase() << setw(25) << cities[i]->getAvgDistFriendlyBase() << setw(29) << cities[i]->getEstEnemyInfantryPower() << setw(29) << cities[i]->getEstFriendlyInfantryPower() << setw(15) << cities[i]->riskFactor << endl;
     }
 }
 
